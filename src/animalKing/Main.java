@@ -14,7 +14,7 @@ public class Main
 		{
 			if (tester.test(a))
 			{
-				System.out.println(a.getName() + " " + a.getYear());
+				System.out.println(a.getName()/* + " " + a.getYear()*/);
 				filteredList.add(a);
 			}
 		}
@@ -62,11 +62,42 @@ public class Main
 		// System.out.println(myList.toString());
 
 		// printAnimals(myList, a -> a.getYear() > 1800);
+		System.out.println();
+		System.out.println("*** 1. ***");
+		myList.sort((a1, a2) -> a2.getYear().compareTo(a1.getYear()));
+		myList.forEach((a) -> System.out.println(a.getYear()));
 
 		System.out.println();
-		myList.sort((a1, a2) -> a2.getYear().compareTo(a1.getYear()));
+		System.out.println("*** 2. ***");
+		myList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		myList.forEach((a) -> System.out.println(a.getName()));
+
 		System.out.println();
-		myList.forEach((a) -> System.out.println(a.getYear()));
+		System.out.println("*** 3. ***");
+		myList.sort((a1, a2) -> a1.move().compareToIgnoreCase(a2.move()));
+		myList.forEach((a) -> System.out.println("Animal: " + a.getName() + " Move: " + a.move()));
+
+		System.out.println();
+		System.out.println("*** 4. ***");
+		printAnimals(myList, a -> (a.breathe() == "lungs"));
+
+		System.out.println();
+		System.out.println("*** 5. ***");
+		printAnimals(myList, a -> (a.breathe() == "lungs") && (a.getYear() == 1758));
+
+		System.out.println();
+		System.out.println("*** 6. ***");
+		printAnimals(myList, a -> (a.breathe() == "lungs") && (a.reproduce() == "eggs"));
+
+		System.out.println();
+		System.out.println("*** 7. ***");
+		myList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		printAnimals(myList, b -> (b.getYear() == 1758));
+
+		System.out.println();
+		System.out.println("*** 8. ***");
+		myList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+		printAnimals(myList, v -> (v instanceof Mammals));
 
 		// Collections.sort(myList, new Comparator<HashMap.Entry<String, Integer>>()
 		// {
